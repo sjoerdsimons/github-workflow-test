@@ -62,6 +62,7 @@ jobs:
         with:
           registry: gcr.io
           image: ${{ steps.meta.outputs.tags }}
+          options: "-v ${{ github.workspace }}:${{github.workspace}} -w ${{github.workspace}}"
           run: |
             echo "SNAKES"
             find
