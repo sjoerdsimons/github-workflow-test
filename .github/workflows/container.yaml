@@ -46,7 +46,7 @@ jobs:
         with:
           context: .
           push: true
-#          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.IMAGE_NAME }}:latest
 #          labels: ${{ steps.meta.outputs.labels }}
 
   test-image:
@@ -56,5 +56,5 @@ jobs:
       - uses: addnab/docker-run-action@v3
         with:
           registry: gcr.io
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          image: ${{ env.IMAGE_NAME }}
           run: echo "SNAKES"
