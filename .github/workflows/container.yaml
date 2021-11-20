@@ -52,7 +52,6 @@ jobs:
   test-image:
     runs-on: ubuntu-latest,
     needs: ["build-and-push-image"]
-    container:
-      image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
     steps:
-      - run: /usr/local/bin/github-workflow-test
+      - uses: docker://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        run: /usr/local/bin/github-workflow-test
