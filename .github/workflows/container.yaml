@@ -50,7 +50,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - uses: ${{ github.repository }}/workflows/test-container.yml@main
+      - uses: sjoerdsimons/github-workflow-test/workflows/test-container.yml@main
         with:
           container: ${{ steps.meta.outputs.tags }}
 
