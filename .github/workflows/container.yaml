@@ -62,4 +62,8 @@ jobs:
         with:
           registry: gcr.io
           image: ${{ steps.meta.outputs.tags }}
-          run: echo "SNAKES"
+          run: |
+            echo "SNAKES"
+            find
+            echo $(pwd)
+            env
