@@ -54,7 +54,7 @@ jobs:
     needs: ["build-and-push-image"]
     steps:
       - uses: addnab/docker-run-action@v3
-        registry: gcr.io
-        image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        run: echo "SNAKES"
-
+        with:
+          registry: gcr.io
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          run: echo "SNAKES"
