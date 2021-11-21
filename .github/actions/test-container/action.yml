@@ -12,7 +12,7 @@ runs:
       - uses: addnab/docker-run-action@v3
         with:
           registry: gcr.io
-          image: ${{ container }}
+          image: ${{ inputs.container }}
           options: "-v ${{ github.workspace }}:${{github.workspace}} -w ${{github.workspace}}"
           run: |
             echo "SNAKES"
