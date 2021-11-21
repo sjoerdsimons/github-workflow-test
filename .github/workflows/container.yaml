@@ -71,6 +71,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: "type=sha,prefix={{branch}}-"
       - name: Push image
+        uses: akhilerm/tag-push-action@v2.0.0
         with:
           src: ${{ env.REGISTRY }}/${{ steps.meta.outputs.tags }}
           dst: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
