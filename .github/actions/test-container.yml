@@ -1,16 +1,12 @@
 name: Test container
-on:
-   workflow_call:
-    inputs:
-      container:
-        required: true
-        type: string
+inputs:
+  container:
+    required: true
+    type: string
 
-jobs:
-  test-container:
-    runs-on: ubuntu-latest
-    needs: ["build-and-push-image"]
-    steps:
+runs:
+  using: "composite"
+  steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - uses: addnab/docker-run-action@v3
