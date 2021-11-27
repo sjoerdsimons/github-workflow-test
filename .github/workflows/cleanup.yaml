@@ -19,8 +19,7 @@ jobs:
         with:
           github-access-token: "${{ secrets.GITHUB_TOKEN }}"
           org: "${{ github.repository_owner }}"
-          #package_name: "${{ github.repository }}"
-          package_name: github-workflow-test
+          package_name: "${{ github.repository }}"
           selector: |
               type=tagCount;operator=greaterThan;value=0
               type=age;operator=olderThan;value=5d
