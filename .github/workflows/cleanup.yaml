@@ -22,6 +22,7 @@ jobs:
           #package_name: "${{ github.repository }}"
           package_name: github-workflow-test
           selector: |
+              type=tagCount;operator=greaterThan;value=0
               type=age;operator=olderThan;value=5d
           excluder: |
               type=tags;operator=equals;value=main
