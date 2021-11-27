@@ -11,7 +11,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  cleanup old images:
+  cleanup-old-images:
     runs-on: ubuntu-latest
     steps:
     - name: Clean GHCR packages
