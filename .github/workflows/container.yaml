@@ -9,7 +9,7 @@ on: [ push, pull_request ]
 env:
   REGISTRY: ghcr.io
   #IMAGE_NAME: ${{ github.repository }}
-  IMAGE_NAME: "test123"
+  IMAGE_NAME: "sjoerdsimons/test123"
 
 jobs:
   build-and-push-image:
