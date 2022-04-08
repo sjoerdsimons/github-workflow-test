@@ -9,6 +9,7 @@ runs:
   steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - uses: addnab/docker-run-action@v3
         with:
           registry: gcr.io

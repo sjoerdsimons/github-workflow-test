@@ -1,0 +1,29 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Cleanup images
+on: [ workflow_dispatch, push ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  cleanup-old-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clean GHCR packages
+        uses: "sjoerdsimons/action-ghcr-batch-delete-versions@wip/sjoerd/clean-package-by-user"
+        with:
+          github-access-token: "${{ secrets.GITHUB_TOKEN }}"
+          org: "${{ github.repository_owner }}"
+          package_name: "${{ github.repository }}"
+          selector: |
+              type=tagCount;operator=greaterThan;value=0
+              type=age;operator=olderThan;value=5d
+          excluder: |
+              type=tags;operator=equals;value=main
+              type=tags;operator=equals;value=latest
+          dry-run: "1"
