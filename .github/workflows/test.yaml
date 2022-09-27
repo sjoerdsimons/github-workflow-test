@@ -14,6 +14,10 @@ jobs:
       - name: image environment
         run: |
           sudo ls -l /dev
+      - name: journal
+        run: |
+          uname -a
+          sudo journalctl -b -k
 
   test-run-2204:
     runs-on: ubuntu-22.04
@@ -22,3 +26,8 @@ jobs:
       - name: image environment
         run: |
           sudo ls -l /dev
+
+      - name: journal
+        run: |
+          uname -a
+          sudo journalctl -b -k
