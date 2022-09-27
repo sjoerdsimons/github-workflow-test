@@ -18,6 +18,9 @@ jobs:
         run: |
           uname -a
           sudo journalctl -b -k
+      - name: sysfs
+        run: |
+          sudo egrep . /sys/class/dmi/id/*
 
   test-run-2204:
     runs-on: ubuntu-22.04
@@ -31,3 +34,6 @@ jobs:
         run: |
           uname -a
           sudo journalctl -b -k
+      - name: sysfs
+        run: |
+          sudo egrep . /sys/class/dmi/id/*
