@@ -15,8 +15,7 @@ jobs:
     runs-on: ${{matrix.on}}
     steps:
       - name: lscpu
-        run: |
-          sudo ls -l /dev
+        run: lscpu
       - name: image environment
         run: |
           sudo ls -l /dev
