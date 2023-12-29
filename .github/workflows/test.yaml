@@ -8,29 +8,18 @@ on: [ push, pull_request, workflow_dispatch]
 
 jobs:
   test-run-latest:
-    runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        on: [ubuntu-latest, ubuntu-22.04]
+    runs-on: ${{matrix.on}}
     steps:
+      - name: lscpu
+        run: |
+          sudo ls -l /dev
       - name: image environment
         run: |
           sudo ls -l /dev
-          lscpu
-      - name: journal
-        run: |
-          uname -a
-          sudo journalctl -b -k
-      - name: sysfs
-        run: |
-          sudo egrep . /sys/class/dmi/id/* || true
-
-  test-run-2204:
-    runs-on: ubuntu-22.04
-
-    steps:
-      - name: image environment
-        run: |
-          sudo ls -l /dev
-
       - name: journal
         run: |
           uname -a
