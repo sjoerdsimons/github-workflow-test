@@ -1,0 +1,31 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Misc test
+on: [ push, pull_request, workflow_dispatch]
+
+jobs:
+  test-run-latest:
+    strategy:
+      fail-fast: false
+      matrix:
+        on: [ubuntu-latest, ubuntu-22.04]
+    runs-on: ${{matrix.on}}
+    steps:
+      - name: lscpu
+        run: lscpu
+      - name: image environment
+        run: |
+          sudo ls -l /dev
+      - name: journal
+        run: |
+          uname -a
+          sudo journalctl -b -k
+      - name: sysfs
+        run: |
+          sudo egrep . /sys/class/dmi/id/* || true
+      - name: metadata
+        run: |
+          curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance?api-version=2021-02-01" | jq
