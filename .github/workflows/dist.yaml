@@ -8,5 +8,7 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - run: gh release create badger --prerelease
