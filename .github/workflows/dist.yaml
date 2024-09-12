@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
+    container:
+      image: rust:slim-bookworm
     steps:
       - uses: actions/checkout@v4
-      - run: gh release create latest --prerelease --target $GITHUB_SHA
+      - run: cargo build --release
+      - run: gh release create latest --prerelease --target $GITHUB_SHA target/release/github-workflow-test
