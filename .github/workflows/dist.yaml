@@ -12,4 +12,4 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - run: gh release create badger --prerelease
+      - run: gh release create latest --prerelease --target $GITHUB_SHA
