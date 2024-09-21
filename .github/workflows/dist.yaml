@@ -44,5 +44,6 @@ jobs:
           --target $GITHUB_SHA build-*/
       - run: >
           gh release create latest
+          --draft
           --prerelease
           --target $GITHUB_SHA build-*/*
