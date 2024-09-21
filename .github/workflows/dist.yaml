@@ -1,5 +1,5 @@
 name: Try and dist stuff
-on: [push]
+on: [ push ]
 
 env:
   REGISTRY: ghcr.io
@@ -19,7 +19,7 @@ jobs:
           name: badger-release
           path: target/release/github-workflow-test
   publish:
-    needs: [build-and-push-image]
+    needs: [ build-and-push-image ]
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
@@ -28,4 +28,4 @@ jobs:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
       - run: find
-      - run: gh release create latest --prerelease --target $GITHUB_SHA badger-release
+      - run: gh release create latest --prerelease --target $GITHUB_SHA badger-release/*
