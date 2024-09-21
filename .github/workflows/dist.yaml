@@ -8,18 +8,22 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target:
+          - debug
+          - release
     container:
       image: rust:slim-bookworm
     steps:
       - uses: actions/checkout@v4
-      - run: cargo build --release
-      - run: ls target/release
+      - run: cargo build --${{matrix.target}}
       - uses: actions/upload-artifact@v4
         with:
-          name: badger-release
-          path: target/release/github-workflow-test
+          name: build-${{matrix.target}}
+          path: target/${{matrix.target}}/github-workflow-test
   publish:
-    needs: [ build-and-push-image ]
+    needs: [build-and-push-image]
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
@@ -34,4 +38,4 @@ jobs:
       - run: >
           gh release create latest
           --prerelease
-          --target $GITHUB_SHA badger-release/*
+          --target $GITHUB_SHA build-*/*
