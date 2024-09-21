@@ -28,4 +28,7 @@ jobs:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
       - run: find
-      - run: gh release create latest --prerelease --target $GITHUB_SHA badger-release/*
+      - run: >
+          gh release create latest
+          --prerelease
+          --target $GITHUB_SHA badger-release/*
