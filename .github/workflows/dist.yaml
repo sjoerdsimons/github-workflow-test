@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         target:
-          - debug
           - release
+          - dev
     container:
       image: rust:slim-bookworm
     steps:
