@@ -1,10 +1,10 @@
 name: Try and dist stuff
 on:
-  - push:
-      branches-ignore:
-        - "gh-readonly-queue/**"
-  - pull_request:
-  - merge_group:
+  push:
+    branches-ignore:
+      - "gh-readonly-queue/**"
+  pull_request:
+  merge_group:
 
 jobs:
   build-binaries:
