@@ -20,7 +20,7 @@ jobs:
       - run: cargo build --profile ${{matrix.target}}
       - run: |
           mkdir -p build
-          mv target/*/github-workflow-test build
+          mv target/*/github-workflow-test build/bla-${{matrix.target}}
       - uses: actions/upload-artifact@v4
         with:
           name: build-${{matrix.target}}
@@ -45,4 +45,4 @@ jobs:
       - run: >
           gh release create latest
           --prerelease
-          --target $GITHUB_SHA build-release/
+          --target $GITHUB_SHA build-*/*
