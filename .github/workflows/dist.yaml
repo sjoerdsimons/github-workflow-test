@@ -29,8 +29,8 @@ jobs:
         uses: actions/download-artifact@v4
       - run: find
       - run: |
-        gh release delete latest --yes || true
-        git push origin :latest || true
+          gh release delete latest --yes || true
+          git push origin :latest || true
       - run: >
           gh release create latest
           --prerelease
