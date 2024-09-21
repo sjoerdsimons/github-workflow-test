@@ -45,4 +45,4 @@ jobs:
       - run: >
           gh release create latest
           --prerelease
-          --target $GITHUB_SHA build-*/
+          --target $GITHUB_SHA build-release/
