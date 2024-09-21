@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: cargo build --release
-      - uses: action/upload-artifact@v4:
+      - uses: action/upload-artifact@v4
         with:
           name: badger-release
           path: target/release/github-workflow
