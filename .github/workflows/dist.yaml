@@ -2,7 +2,7 @@ name: Try and dist stuff
 on:
   - push:
       branches-ignore:
-        - "gh-readonly-queue/**" > wrong
+        - "gh-readonly-queue/**"
   - pull_request:
   - merge_group:
 
