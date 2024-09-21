@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: cargo build --release
+      - run: ls target/release
       - uses: actions/upload-artifact@v4
         with:
           name: badger-release
