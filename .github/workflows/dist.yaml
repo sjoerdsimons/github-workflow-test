@@ -8,8 +8,6 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
     container:
       image: rust:slim-bookworm
     steps:
@@ -23,6 +21,8 @@ jobs:
   publish:
     needs: [ build-and-push-image ]
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
