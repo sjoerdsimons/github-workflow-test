@@ -19,8 +19,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: cargo build --profile ${{matrix.target}}
       - run: |
-        mkdir -p build
-        mv target/*/github-workflow-test build
+          mkdir -p build
+          mv target/*/github-workflow-test build
       - uses: actions/upload-artifact@v4
         with:
           name: build-${{matrix.target}}
