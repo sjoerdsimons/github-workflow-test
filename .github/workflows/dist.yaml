@@ -39,6 +39,10 @@ jobs:
           gh release delete latest --yes || true
           git push origin :latest || true
       - run: >
+          echo gh release create latest
+          --prerelease
+          --target $GITHUB_SHA build-*/*
+      - run: >
           gh release create latest
           --prerelease
-          --target $GITHUB_SHA build-dev/*
+          --target $GITHUB_SHA build-*/*
