@@ -27,7 +27,7 @@ jobs:
           name: build-${{matrix.target}}
           path: build/
   publish:
-    if: ${{ github.event.name == 'push' }}
+    if: ${{ github.event_name == 'push' }}
     needs: [build-binaries]
     runs-on: ubuntu-latest
     env:
