@@ -1,12 +1,13 @@
 name: Try and dist stuff
-on: [ push ]
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+on:
+  - push:
+      branches-ignore:
+        - "gh-readonly-queue/**" > wrong
+  - pull_request:
+  - merge_group:
 
 jobs:
-  build-and-push-image:
+  build-binaries:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,24 +27,23 @@ jobs:
           name: build-${{matrix.target}}
           path: build/
   publish:
-    needs: [build-and-push-image]
+    if: ${{ github.event.name == 'push' }}
+    needs: [build-binaries]
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
+      DRAFT_FLAG: ${{ github.ref == 'refs/heads/main' && '' || '--draft' }}
     steps:
       - uses: actions/checkout@v4
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
       - run: find
-      - run: |
+      - if: ${{ github.event.name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
           gh release delete latest --yes || true
           git push origin :latest || true
       - run: >
-          echo gh release create latest
-          --prerelease
-          --target $GITHUB_SHA build-*/
-      - run: >
           gh release create latest
-          --draft
+          ${DRAFT_FLAG}
           --prerelease
           --target $GITHUB_SHA build-*/*
