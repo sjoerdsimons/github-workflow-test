@@ -18,10 +18,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: cargo build --profile ${{matrix.target}}
+      - run: |
+        mkdir -p build
+        mv target/*/github-workflow-test build
       - uses: actions/upload-artifact@v4
         with:
           name: build-${{matrix.target}}
-          path: target/*/github-workflow-test
+          path: build/
   publish:
     needs: [build-and-push-image]
     runs-on: ubuntu-latest
