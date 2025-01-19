@@ -19,3 +19,7 @@ jobs:
         run: whoami
       - name: list /dev
         run: ls -l /dev
+      - name: cpu info
+        run: cat /proc/cpuinfo
+      - name: env
+        run: env
